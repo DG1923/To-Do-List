@@ -9,6 +9,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TasksScreen();
+    return MaterialApp(
+      home: TasksScreen(),
+    );
   }
 }

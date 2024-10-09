@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'todo_screen.dart';
+import 'addTaskScreen.dart';
 class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
 
@@ -13,10 +14,26 @@ class _TasksScreenState extends State<TasksScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet<void>(
+                context: context,
+                isScrollControlled: true,
+                builder: (BuildContext context) {
+                  return Addtaskscreen();
+                });
+          },
+          backgroundColor: Colors.lightBlueAccent,
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+        ),
         backgroundColor: Colors.lightBlueAccent,
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 padding:
@@ -33,6 +50,9 @@ class _TasksScreenState extends State<TasksScreen> {
                       backgroundColor: Colors.white,
                       radius: 30,
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Text(
                       "Giap To Do",
                       style: TextStyle(
@@ -41,7 +61,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           color: Colors.white),
                     ),
                     Text(
-                      "12 tasks",
+                      "${tasks.length} tasks",
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,
@@ -53,17 +73,7 @@ class _TasksScreenState extends State<TasksScreen> {
               SizedBox(
                 height: 30,
               ),
-              Expanded(
-                child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    topLeft: Radius.circular(30),
-                  ),
-                  color: Colors.white,
-                ),
-              ),
-              ),
+              Todo(),
             ],
           ),
         ),
