@@ -54,9 +54,14 @@ class _TodoState extends State<Todo> {
                       }
                     });
                   },
-                  title: Text(task),
+                  title: Text(task,
+                    style: TextStyle(
+                      decoration: tasks[index][task]!?TextDecoration.lineThrough:null,
+                    ),
+                  ),
                   trailing: Checkbox(
                     value: tasks[index].values.first,
+                    activeColor: Colors.lightBlueAccent,
                     onChanged: (value){
                       setState(() {
                         tasks[index][task] = value!;
@@ -64,7 +69,6 @@ class _TodoState extends State<Todo> {
                     },  
                     ),
                   );
-        
               },
             )),
       ),

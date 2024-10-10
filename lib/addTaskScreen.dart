@@ -30,7 +30,8 @@ class _AddtaskscreenState extends State<Addtaskscreen> {
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Colors.lightBlueAccent
-                ),),
+                ),
+              ),
               SizedBox(
                 width: 300,
                 child: TextField(
@@ -57,8 +58,12 @@ class _AddtaskscreenState extends State<Addtaskscreen> {
                   ),
                 ),
 
-                style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all<Color>(Colors.lightBlueAccent),
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(200,20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  backgroundColor: Colors.lightBlueAccent,
                 ),
                 onPressed: () => Navigator.pop(context),
               ),
