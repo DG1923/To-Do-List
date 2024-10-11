@@ -2,14 +2,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'todo_screen.dart';
 import 'addTaskScreen.dart';
+import 'package:to_do_list/models/task.dart';
+List<Task> taskTodo = [
+  Task(nameTask: "Hoc lap trinh"),
+  Task(nameTask: "Viet app mobile"),
+  Task(nameTask: "Cleaning the house"),
+  Task(nameTask: "buy a cup of coffee"),
+  Task(nameTask: "Lap trinh extension  fsdf"),
+];
 class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
-
   @override
   State<TasksScreen> createState() => _TasksScreenState();
 }
 
 class _TasksScreenState extends State<TasksScreen> {
+  void addTaskList(String nameTask){
+    setState(() {
+      Task temp = Task(nameTask: nameTask);
+      taskTodo.add(temp);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +33,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 context: context,
                 isScrollControlled: true,
                 builder: (BuildContext context) {
-                  return Addtaskscreen();
+                  return Addtaskscreen(voidCallBack: addTaskList,);
                 });
           },
           backgroundColor: Colors.lightBlueAccent,
@@ -61,7 +74,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           color: Colors.white),
                     ),
                     Text(
-                      "${tasks.length} tasks",
+                      taskTodo.length==1?"${taskTodo.length} task":"${taskTodo.length} tasks",
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,
@@ -73,7 +86,7 @@ class _TasksScreenState extends State<TasksScreen> {
               SizedBox(
                 height: 30,
               ),
-              Todo(),
+              Todo(taskTodo: taskTodo,),
             ],
           ),
         ),

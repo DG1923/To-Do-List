@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Addtaskscreen extends StatefulWidget {
-  const Addtaskscreen({super.key});
+  Function voidCallBack;
+  Addtaskscreen({super.key,required this.voidCallBack});
 
   @override
   State<Addtaskscreen> createState() => _AddtaskscreenState();
@@ -57,7 +58,6 @@ class _AddtaskscreenState extends State<Addtaskscreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(200,20),
                   shape: RoundedRectangleBorder(
@@ -65,7 +65,10 @@ class _AddtaskscreenState extends State<Addtaskscreen> {
                   ),
                   backgroundColor: Colors.lightBlueAccent,
                 ),
-                onPressed: () => Navigator.pop(context),
+                onPressed: (){
+                  widget.voidCallBack(_text.text);
+                  Navigator.pop(context);
+                },
               ),
             ],
           ),
