@@ -7,5 +7,9 @@ class Taskdata extends ChangeNotifier{
     Task(nameTask: "Cleaning the house"),
     Task(nameTask: "buy a cup of coffee"),
     Task(nameTask: "Lap trinh extension  fsdf"),
+    Task(nameTask: "Hieu provider trong flutter"),
   ];
+  int get getCount{
+    return taskTodo.length;
+  }
 }

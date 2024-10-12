@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'todo_screen.dart';
 import 'addTaskScreen.dart';
 import 'package:to_do_list/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_list/models/taskData.dart';
+
 List<Task> taskTodo = [
   Task(nameTask: "Hoc lap trinh"),
   Task(nameTask: "Viet app mobile"),
@@ -10,6 +13,7 @@ List<Task> taskTodo = [
   Task(nameTask: "buy a cup of coffee"),
   Task(nameTask: "Lap trinh extension  fsdf"),
 ];
+
 class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
   @override
@@ -17,12 +21,13 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  void addTaskList(String nameTask){
+  void addTaskList(String nameTask) {
     setState(() {
       Task temp = Task(nameTask: nameTask);
       taskTodo.add(temp);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,7 +38,9 @@ class _TasksScreenState extends State<TasksScreen> {
                 context: context,
                 isScrollControlled: true,
                 builder: (BuildContext context) {
-                  return Addtaskscreen(voidCallBack: addTaskList,);
+                  return Addtaskscreen(
+                    voidCallBack: addTaskList,
+                  );
                 });
           },
           backgroundColor: Colors.lightBlueAccent,
@@ -74,7 +81,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           color: Colors.white),
                     ),
                     Text(
-                      taskTodo.length==1?"${taskTodo.length} task":"${taskTodo.length} tasks",
+                      '${Provider.of<Taskdata>(context).getCount} tasks',
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,
@@ -86,7 +93,19 @@ class _TasksScreenState extends State<TasksScreen> {
               SizedBox(
                 height: 30,
               ),
-              Todo(taskTodo: taskTodo,),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(30),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(30),
+                      topLeft: Radius.circular(30),
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: Todo(),
+                ),
+              ),
             ],
           ),
         ),
