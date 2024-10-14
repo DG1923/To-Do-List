@@ -9,6 +9,10 @@ class Taskdata extends ChangeNotifier{
     Task(nameTask: "Lap trinh extension  fsdf"),
     Task(nameTask: "Hieu provider trong flutter"),
   ];
+  void deleteData(int index){
+    taskTodo.removeAt(index);
+    notifyListeners();
+  }
   void addData(Task task){
     taskTodo.add(task);
     notifyListeners();

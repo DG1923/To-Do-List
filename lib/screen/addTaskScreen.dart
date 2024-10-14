@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:to_do_list/models/task.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list/models/taskData.dart';
-class Addtaskscreen extends StatelessWidget {
+class Addtaskscreen extends StatefulWidget {
   Addtaskscreen({super.key});
 
+  @override
+  State<Addtaskscreen> createState() => _AddtaskscreenState();
+}
+
+class _AddtaskscreenState extends State<Addtaskscreen> {
   TextEditingController _text = TextEditingController();
 
   @override
@@ -32,10 +37,12 @@ class Addtaskscreen extends StatelessWidget {
               SizedBox(
                 width: 300,
                 child: TextField(
+
                   cursorColor: Colors.lightBlueAccent,
                   textAlign: TextAlign.center,
                   autofocus: true,
                   controller: _text,
+
                   decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.lightBlueAccent),
