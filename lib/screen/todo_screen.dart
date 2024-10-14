@@ -12,9 +12,7 @@ class Todo extends StatelessWidget {
         return ListView.builder(
           itemCount: tasks.getCount,
           itemBuilder: (BuildContext context, int index) {
-            return Listtile(task: tasks.taskTodo[index], voidCallBackFunction: (){
-                tasks.taskTodo[index].getDoneTask();
-            });
+            return Listtile(index:index);
           },
         );
       },

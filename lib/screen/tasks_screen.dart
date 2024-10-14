@@ -5,28 +5,8 @@ import 'addTaskScreen.dart';
 import 'package:to_do_list/models/task.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list/models/taskData.dart';
-
-List<Task> taskTodo = [
-  Task(nameTask: "Hoc lap trinh"),
-  Task(nameTask: "Viet app mobile"),
-  Task(nameTask: "Cleaning the house"),
-  Task(nameTask: "buy a cup of coffee"),
-  Task(nameTask: "Lap trinh extension  fsdf"),
-];
-
-class TasksScreen extends StatefulWidget {
+class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  void addTaskList(String nameTask) {
-    setState(() {
-      Task temp = Task(nameTask: nameTask);
-      taskTodo.add(temp);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +19,6 @@ class _TasksScreenState extends State<TasksScreen> {
                 isScrollControlled: true,
                 builder: (BuildContext context) {
                   return Addtaskscreen(
-                    voidCallBack: addTaskList,
                   );
                 });
           },

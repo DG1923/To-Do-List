@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_list/models/taskData.dart';
+class Addtaskscreen extends StatelessWidget {
+  Addtaskscreen({super.key});
 
-class Addtaskscreen extends StatefulWidget {
-  Function voidCallBack;
-  Addtaskscreen({super.key,required this.voidCallBack});
-
-  @override
-  State<Addtaskscreen> createState() => _AddtaskscreenState();
-}
-
-class _AddtaskscreenState extends State<Addtaskscreen> {
   TextEditingController _text = TextEditingController();
 
   @override
@@ -66,7 +62,8 @@ class _AddtaskscreenState extends State<Addtaskscreen> {
                   backgroundColor: Colors.lightBlueAccent,
                 ),
                 onPressed: (){
-                  widget.voidCallBack(_text.text);
+                  Task task = Task(nameTask: _text.text);
+                  Provider.of<Taskdata>(context,listen: false).addData(task);
                   Navigator.pop(context);
                 },
               ),

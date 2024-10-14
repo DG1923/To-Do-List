@@ -9,6 +9,14 @@ class Taskdata extends ChangeNotifier{
     Task(nameTask: "Lap trinh extension  fsdf"),
     Task(nameTask: "Hieu provider trong flutter"),
   ];
+  void addData(Task task){
+    taskTodo.add(task);
+    notifyListeners();
+  }
+  void isDone(int index){
+    taskTodo[index].isDone = !taskTodo[index].isDone;
+    notifyListeners();
+  }
   int get getCount{
     return taskTodo.length;
   }
