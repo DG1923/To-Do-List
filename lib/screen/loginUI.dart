@@ -9,71 +9,159 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool hidePassword = false;
+  bool rememberAccount = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kPrimaryColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-        SizedBox(
-          height: 350,
-          width: double.infinity,
-          child: ClipPath(
-            clipper: CustomClip(),
-            child: Image.asset(
-              'assets/image/login3.jpg',
-              fit: BoxFit.fitWidth,
-            ),
-          ),
-        ),
-        Text(
-          "Welcome Back",
-          style: kTextStyle.copyWith(
-            fontSize: 35,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Text(
-          "Login to your account",
-          style: kTextStyle.copyWith(
-            fontSize: 18,
-          ),
-
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
-          child: Card(
-            color: Colors.white,
-            child: ListTile(
-              leading: Icon(
-                Icons.account_circle,
-                color: kPrimaryColor,
-              ),
-              title: TextField(
-                decoration: kTextFieldDecoration,
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white,
+        body: Column(children: [
+          SizedBox(
+            height: 350,
+            width: double.infinity,
+            child: ClipPath(
+              clipper: CustomClip(),
+              child: Image.asset(
+                'assets/image/login3.jpg',
+                fit: BoxFit.fitWidth,
               ),
             ),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
-          child: Card(
-            color: Colors.white,
-            child: ListTile(
-              leading: Icon(
-                Icons.password,
-                color: kPrimaryColor,
-              ),
-              title: TextField(
-                obscureText: true,
-                decoration: kTextFieldDecoration,
-              ),
+          Expanded(child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 0),
+            child: Column(
+              children: [
+                Text(
+                  "Welcome Back",
+                  style: kTextStyle.copyWith(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  "Login to your account",
+                  style: kTextStyle.copyWith(
+                    fontSize: 18,
+                  ),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      side:const BorderSide(
+                        width: 10,
+                        color: Colors.white38,
+                      )),
+                  color: Colors.white,
+                  child: ListTile(
+                    leading:const Icon(
+                      Icons.account_circle,
+                      color: kPrimaryColor,
+                    ),
+                    title: TextField(
+                      decoration:
+                      kTextFieldDecoration.copyWith(hintText: "Enter your email"),
+                    ),
+                  ),
+                ),
+                Card(
+                  color: Colors.white,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      side: BorderSide(
+                        color: Colors.white38,
+                        width: 2,
+                      )),
+                  child: ListTile(
+                    trailing: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (hidePassword == true) {
+                            hidePassword = false;
+                          } else {
+                            hidePassword = true;
+                          }
+                          print("State: ${hidePassword}");
+                        });
+                      },
+                      child: Icon(
+                        hidePassword
+                            ? Icons.remove_red_eye_outlined
+                            : Icons.hide_source_outlined,
+                      ),
+                    ),
+                    leading: Icon(
+                      Icons.password,
+                      color: kPrimaryColor,
+                    ),
+                    title: TextField(
+                      obscureText: hidePassword ? true : false,
+                      decoration: kTextFieldDecoration.copyWith(
+                          hintText: "Enter your password"),
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          rememberAccount = !rememberAccount;
+                        });
+                      },
+                      child: Row(
+                        children: [
+                          Checkbox(
+                              value: rememberAccount,
+                              onChanged: (value) {
+                                setState(() {
+                                  rememberAccount = value!;
+                                });
+                              }),
+                          Text("Remember Account"),
+                        ],
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Forgot Password?",
+                        style: kTextStyle.copyWith(
+                          fontSize: 14,
+                          color: kPrimaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: MaterialButton(
+                    minWidth: 200,
+                    color: kPrimaryColor,
+                    splashColor: kPrimaryColor.withOpacity(0.8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      side: BorderSide(
+                        width: 0,
+                        color: kPrimaryColor,
+                      )
+                    ),
+                    onPressed: () {  },
+                    child: Text("Login",
+                    style: kTextStyle.copyWith(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),),
+                  )
+                )
+              ],
             ),
-          ),
-        ),
-        Checkbox(value: false, onChanged: (value) {})
-      ]),
+          ))
+        ]),
+      ),
     );
   }
 }
