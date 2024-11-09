@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_list/models/task.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_list/models/taskData.dart';
+import 'package:to_do_list/providers/taskData.dart';
 class Listtile extends StatelessWidget {
   const Listtile({super.key,required this.index});
   final int index;

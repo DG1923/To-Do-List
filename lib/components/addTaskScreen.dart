@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_list/models/task.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_list/models/taskData.dart';
+import 'package:to_do_list/providers/taskData.dart';
 class Addtaskscreen extends StatefulWidget {
   Addtaskscreen({super.key});
 
@@ -18,7 +18,7 @@ class _AddtaskscreenState extends State<Addtaskscreen> {
       padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Container(
         height: 300,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(topRight: Radius.circular(30.0),topLeft: Radius.circular(30),)
         ),
@@ -43,7 +43,7 @@ class _AddtaskscreenState extends State<Addtaskscreen> {
                   autofocus: true,
                   controller: _text,
 
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.lightBlueAccent),
                     ),
@@ -55,12 +55,6 @@ class _AddtaskscreenState extends State<Addtaskscreen> {
                 ),
               ),
               ElevatedButton(
-                child: const Text('ADD',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(200,20),
                   shape: RoundedRectangleBorder(
@@ -73,6 +67,12 @@ class _AddtaskscreenState extends State<Addtaskscreen> {
                   Provider.of<Taskdata>(context,listen: false).addData(task);
                   Navigator.pop(context);
                 },
+                child: const Text('ADD',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ],
           ),

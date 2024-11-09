@@ -1,16 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:to_do_list/constants.dart';
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  bool hidePassword = false;
-  bool rememberAccount = false;
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
+  static const String LoginScreenId = "LoginScreen";
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  late bool hidePassword = true;
+  late bool rememberAccount = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -76,14 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: ListTile(
                     trailing: GestureDetector(
                       onTap: () {
-                        setState(() {
-                          if (hidePassword == true) {
-                            hidePassword = false;
-                          } else {
-                            hidePassword = true;
-                          }
-                          print("State: ${hidePassword}");
-                        });
+
                       },
                       child: Icon(
                         hidePassword
@@ -107,18 +98,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          rememberAccount = !rememberAccount;
-                        });
+
                       },
                       child: Row(
                         children: [
                           Checkbox(
                               value: rememberAccount,
                               onChanged: (value) {
-                                setState(() {
-                                  rememberAccount = value!;
-                                });
+
                               }),
                           Text("Remember Account"),
                         ],
@@ -137,25 +124,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 SizedBox(
-                  width: double.infinity,
-                  child: MaterialButton(
-                    minWidth: 200,
-                    color: kPrimaryColor,
-                    splashColor: kPrimaryColor.withOpacity(0.8),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      side: BorderSide(
-                        width: 0,
-                        color: kPrimaryColor,
-                      )
-                    ),
-                    onPressed: () {  },
-                    child: Text("Login",
-                    style: kTextStyle.copyWith(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),),
-                  )
+                    width: double.infinity,
+                    child: MaterialButton(
+                      minWidth: 200,
+                      color: kPrimaryColor,
+                      splashColor: kPrimaryColor.withOpacity(0.8),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          side: BorderSide(
+                            width: 0,
+                            color: kPrimaryColor,
+                          )
+                      ),
+                      onPressed: () {  },
+                      child: Text("Login",
+                        style: kTextStyle.copyWith(
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),),
+                    )
                 )
               ],
             ),
@@ -165,6 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+
 
 class CustomClip extends CustomClipper<Path> {
   @override
