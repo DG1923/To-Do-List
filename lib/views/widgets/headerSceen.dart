@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list/widget/listTile.dart';
+import 'package:to_do_list/views/widgets/listTile.dart';
 import 'package:to_do_list/providers/taskData.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';

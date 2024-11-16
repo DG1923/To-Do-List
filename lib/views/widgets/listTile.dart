@@ -24,6 +24,6 @@ class Listtile extends StatelessWidget {
           Provider.of<Taskdata>(context,listen: false).isDone(index);
         },
       ),
-    );;
+    );
   }
 }

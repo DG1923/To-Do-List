@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
         return Taskdata();
       },
       child: MaterialApp(
-        initialRoute: LoginScreen.LoginScreenId,
+        initialRoute: SignUpScreen.SignupId,
         routes: {
           SignUpScreen.SignupId: (context)=>SignUpScreen(),
           LoginScreen.LoginScreenId: (context)=>LoginScreen(),
