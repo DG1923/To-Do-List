@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list/constants.dart';
+import 'package:to_do_list/views/screen/loginUI.dart';
+import 'package:to_do_list/views/widgets/constants.dart';
 
 class SignUpScreen extends StatelessWidget {
   static const String SignupId = "SignUpId";
@@ -8,77 +9,119 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-    Column(
-      children: [
-        // Hình ảnh bo tròn ở trên
-        CircleAvatar(
-          radius: 60,
-          backgroundImage: AssetImage('assets/images/signup_image.png'),
-        ),
-        SizedBox(height: 20),
-        // Đăng ký với Google
-        ElevatedButton.icon(
-          onPressed: () {
-            // Xử lý đăng ký với Google
-          },
-          icon: Icon(Icons.login),
-          label: Text("Đăng ký với Google"),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: kPrimaryColor, // Màu sắc của Google
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+             SizedBox(
+            height: 350,
+            width: double.infinity,
+            child: ClipPath(
+              clipper: CustomClip(),
+              child: Image.asset(
+                'assets/image/login3.jpg',
+                fit: BoxFit.fitWidth,
+              ),
+            ),
           ),
-        ),
-        SizedBox(height: 10),
-        // Đăng ký với Apple
-        ElevatedButton.icon(
-          onPressed: () {
-            // Xử lý đăng ký với Apple
-          },
-          icon: Icon(Icons.login),
-          label: Text("Đăng ký với Apple"),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: kPrimaryColor, // Màu sắc của Google
-          ),
-        ),
-        SizedBox(height: 10),
-        // Đăng ký với Email
-        ElevatedButton.icon(
-          onPressed: () {
-            // Xử lý đăng ký với Email
-          },
-          icon: Icon(Icons.email),
-          label: Text("Đăng ký với Email"),
-        ),
-        SizedBox(height: 20),
-      ],
-    // ); Scaffold(
-    //   appBar: AppBar(title: Text("Sign Up")),
-    //   body: Padding(
-    //     padding: EdgeInsets.all(16.0),
-    //     child: Column(
-    //       children: [
-    //         TextField(
-    //           controller: _emailController,
-    //           decoration: InputDecoration(labelText: "Email"),
-    //         ),
-    //         TextField(
-    //           controller: _passwordController,
-    //           decoration: InputDecoration(labelText: "Password"),
-    //           obscureText: true,
-    //         ),
-    //         SizedBox(height: 20),
+          Expanded(child:Padding(padding: EdgeInsets.symmetric(horizontal: 50,vertical: 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              Center(
+                child: Text(
+                    "Sign up",
+                    style: kTextStyle.copyWith(
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+              ),
+                Text("Email",style: kTextStyle.copyWith(fontSize: 18),),
+                Card(
+                  color: Colors.white,
+                  child: ListTile(
+                    title: TextField(
+                      decoration:
+                      kTextFieldDecoration.copyWith(hintText: "Enter your email"),
+                    ),
+                  ),
+                ),
+                Text("Password",style: kTextStyle.copyWith(fontSize: 18),),
+                Card(
+                  color: Colors.white,
+                  child: ListTile(
+                    trailing: GestureDetector(
+                      onTap: () {
+
+                      },
+                      child: Icon(
+                        Icons.lock,
+                        color: kPrimaryColor,
+                        size: 20,
+                      ),
+                    ),
+                    title: TextField(
+                      obscureText: true,
+                      decoration: kTextFieldDecoration.copyWith(
+                          hintText: "Enter your password"),
+                    ),
+                  ),
+                ),
+                 Text("Confirm Password",style: kTextStyle.copyWith(fontSize: 18),),
+                Card(
+                  color: Colors.white,
+                  child: ListTile(
+                    title: TextField(
+                      obscureText: true,
+                      decoration: kTextFieldDecoration.copyWith(
+                          hintText: "Enter confirm password"),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                    width: double.infinity,
+                    child: MaterialButton(
+                      minWidth: 200,
+                      color: kPrimaryColor,
+                      splashColor: kPrimaryColor.withOpacity(0.8),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          side: BorderSide(
+                            width: 0,
+                            color: kPrimaryColor,
+                          )
+                      ),
+                      onPressed: () {  },
+                      child: Text("Sign up",
+                        style: kTextStyle.copyWith(
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),),
+                    )
+                ),
+                SizedBox(height: 15,),
+                Center(
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, LoginScreen.LoginScreenId);
+                    },
+                    child: Text(
+                      "Already have an account?",
+                      style: kTextStyle.copyWith(
+                        fontSize: 16,
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w900,
+                      ),
+                      ),
+                  ),
+                )
+            ],),))
+          ],
+        )
+      ),
     );
-    //         true? CircularProgressIndicator()
-    //             : ElevatedButton(
-    //           onPressed: () {
-    //             final email = _emailController.text;
-    //             final password = _passwordController.text;
-    //           },
-    //           child: Text("Sign Up"),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }

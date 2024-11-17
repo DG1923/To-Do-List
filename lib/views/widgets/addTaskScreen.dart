@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_list/models/task.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_list/providers/taskData.dart';
+import 'package:to_do_list/viewmodels/taskData.dart';
 class Addtaskscreen extends StatefulWidget {
   Addtaskscreen({super.key});
 

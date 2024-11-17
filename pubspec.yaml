@@ -55,3 +55,7 @@ flutter:
           style: italic
   assets:
     - assets/image/
+    - assets/fonts/
+    - assets/image/icon/google.png
+    - assets/image/icon/apple.png
+

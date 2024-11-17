@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../components/headerSceen.dart';
-import '../components/addTaskScreen.dart';
-import 'package:to_do_list/models/task.dart';
+import 'package:to_do_list/views/widgets/headerSceen.dart';
+import 'package:to_do_list/views/widgets/addTaskScreen.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_list/providers/taskData.dart';
+import 'package:to_do_list/viewmodels//taskData.dart';
 class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
   static const String TaskScreenId = "TaskScreen";

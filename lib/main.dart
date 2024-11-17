@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list/models/task.dart';
-import 'package:to_do_list/screen/signupScreen.dart';
-import 'screen/tasks_screen.dart';
+import 'package:to_do_list/views/screen/signupScreen.dart';
+import 'package:to_do_list/views/screen/tasks_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_list/providers/taskData.dart';
-import 'screen/loginUI.dart';
+import 'package:to_do_list/viewmodels/taskData.dart';
+import 'package:to_do_list/views/screen/loginUI.dart';
 void main() {
   runApp(const MainApp());
 }
@@ -19,7 +18,7 @@ class MainApp extends StatelessWidget {
         return Taskdata();
       },
       child: MaterialApp(
-        initialRoute: SignUpScreen.SignupId,
+        initialRoute: LoginScreen.LoginScreenId,
         routes: {
           SignUpScreen.SignupId: (context)=>SignUpScreen(),
           LoginScreen.LoginScreenId: (context)=>LoginScreen(),
@@ -29,3 +28,4 @@ class MainApp extends StatelessWidget {
     );
   }
 }
+
