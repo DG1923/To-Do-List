@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:to_do_list/views/screen/signupScreen.dart';
+import 'package:to_do_list/views/screen/signUpScreen/signupScreen.dart';
 import 'package:to_do_list/views/widgets/constants.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   'assets/image/photo.png',
                   width: 300,
                   height: 300,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
               ),
               Text(
@@ -225,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ]),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 

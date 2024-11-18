@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list/views/screen/loginUI.dart';
+import 'package:to_do_list/views/screen/loginScreen/loginUI.dart';
 import 'package:to_do_list/views/widgets/constants.dart';
 
 class SignUpScreen extends StatelessWidget {
