@@ -6,7 +6,9 @@ const kTextStyle = TextStyle(
   fontFamily:"Roboto",
 );
 const kSecondColor = Color(0xFF9AA641);
-const kPrimaryColor = Color(0xFF87dce3);
+// const kPrimaryColor = Color(0xFF87dce3);
+const kPrimaryColor = Colors.lightBlueAccent;
+
 const kTextFieldDecoration = InputDecoration(
   hintText: "Type here........",
   contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 0),
