@@ -4,6 +4,7 @@ import 'package:to_do_list/views/screen/toDoScreen/components/headerSceen.dart';
 import 'package:to_do_list/views/screen/toDoScreen/components/addTaskScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list/viewmodels/taskData.dart';
+import 'package:to_do_list/viewmodels/authViewModel.dart';
 class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
   static const String TaskScreenId = "TaskScreen";
@@ -40,23 +41,27 @@ class TasksScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircleAvatar(
-                      child: Icon(
+                    const CircleAvatar(
+                      child:Icon(
                         Icons.list,
                         size: 30,
                       ),
                       backgroundColor: Colors.white,
                       radius: 30,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      "Giap To Do",
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white),
+                    Consumer<Authviewmodel>(
+                      builder: (context, authViewModel, child) {
+                        return Text(
+                          "Hello, ${authViewModel.user?.displayName ?? "Giap To Do"}",
+                        style:const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white),
+                      );
+                    },
                     ),
                     Text(
                       '${Provider.of<Taskdata>(context).getCount} tasks',
