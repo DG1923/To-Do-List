@@ -28,9 +28,9 @@ class CustomClip extends CustomClipper<Path> {
     double h = size.height;
     double w = size.width;
     Path path = Path();
-    path.lineTo(0, h - 150); // Bắt đầu từ góc dưới bên trái
-    path.quadraticBezierTo(w / 2, h+50, w,
-        h - 150); //Đường cong với x1y1 = (w/2,h+50) với x2y2 = w,h-100
+    path.lineTo(0, h - 50); // Bắt đầu từ góc dưới bên trái
+    path.quadraticBezierTo(w / 2, h-10, w,
+        h - 50); //Đường cong với x1y1 = (w/2,h+50) với x2y2 = w,h-100
     path.lineTo(w, 0); // Nối đến góc trên bên phải
     path.close();
     return path;

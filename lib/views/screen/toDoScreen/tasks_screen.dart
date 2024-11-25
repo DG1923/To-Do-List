@@ -6,6 +6,7 @@ import 'package:to_do_list/views/screen/toDoScreen/components/addTaskScreen.dart
 import 'package:provider/provider.dart';
 import 'package:to_do_list/viewmodels/taskData.dart';
 import 'package:to_do_list/viewmodels/authViewModel.dart';
+import 'package:to_do_list/views/screen/toDoScreen/modern_tasks_screen.dart';
 class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
   static const String TaskScreenId = "TaskScreen";
@@ -96,8 +97,16 @@ class TasksScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 30,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder:(context)=>ModernTasksScreen())
+                  );
+                }, 
+                child: Icon(Icons.arrow_forward_ios)),
             ),
             Expanded(
               child: Container(
