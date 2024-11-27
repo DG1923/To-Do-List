@@ -53,10 +53,10 @@ class TasksScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Consumer<Authviewmodel>(
+                  Consumer<AuthViewModel>(
                     builder: (context, authViewModel, child) {
                       return Text(
-                        "Hello, ${authViewModel.user?.displayName ?? "Giap To Do"}",
+                        "Hello, ${authViewModel.userName} va Provider: ${authViewModel.isGoogleSignIn}",
                         style:const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.w700,
@@ -75,7 +75,7 @@ class TasksScreen extends StatelessWidget {
                       );
                     },
                   ),
-                  Consumer<Authviewmodel>(
+                  Consumer<AuthViewModel>(
                     builder: (context, authViewModel, child) {
                       return IconButton(
                         onPressed: () async {

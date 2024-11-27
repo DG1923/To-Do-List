@@ -7,11 +7,12 @@ import 'package:to_do_list/views/widgets/custom_image.dart';
 import 'package:to_do_list/views/widgets/custom_button.dart';
 import 'package:to_do_list/viewmodels/authViewModel.dart';
 import 'package:provider/provider.dart';
+import 'package:to_do_list/viewmodels/authViewModel/email_auth_view_model.dart';
 class SignUpScreen extends StatelessWidget {
   static const String SignupId = "SignUpId";
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
+  final TextEditingController _nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +76,12 @@ class SignUpScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                            _buildTextField(
+                            textEditing: _nameController,
+                            label: "Name",
+                            hint: "Enter your name",
+                            icon: Icons.person_outline,
+                          ),
                           SizedBox(height: 20),
                           _buildTextField(
                             label: "Email",
@@ -94,12 +101,12 @@ class SignUpScreen extends StatelessWidget {
                           SizedBox(height: 30),
                           
                           // Sign Up Button
-                          Consumer<Authviewmodel>(
+                          Consumer<EmailAuthViewModel>(
                             builder: (context,authViewModel,child) {
-                              return authViewModel.isLoading?CircularProgressIndicator():kCustomButton(
+                              return authViewModel.isLoading?const Center(child: CircularProgressIndicator()):kCustomButton(
                                 text: "Sign Up",
                                 function: () async {
-                                  if(await authViewModel.signUpWithEmail(context,_emailController.text,_passwordController.text) == true){
+                                  if(await authViewModel.signUpWithEmail(_emailController.text,_passwordController.text,_nameController.text) == true){
                                     Navigator.pushNamed(context, LoginScreen.LoginScreenId);
                                   }
                                 },

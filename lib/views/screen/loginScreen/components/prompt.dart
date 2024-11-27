@@ -4,6 +4,7 @@ import 'package:to_do_list/views/widgets/constants.dart';
 import 'package:to_do_list/views/widgets/custom_button.dart';
 import 'package:to_do_list/viewmodels/authViewModel.dart';
 import 'package:provider/provider.dart';
+import 'package:to_do_list/viewmodels/authViewModel/email_auth_view_model.dart';
 class Prompt extends StatefulWidget {
   Prompt({super.key});
   final TextEditingController _email = new TextEditingController();
@@ -83,11 +84,14 @@ class _PromptState extends State<Prompt> {
           ),
         ],
       ),
-      Consumer<Authviewmodel>(
+      Consumer<EmailAuthViewModel>(
         builder: (context,authViewmodel, child){
           return authViewmodel.isLoading?CircularProgressIndicator():kCustomButton(function: ()async{
-            if(await authViewmodel.signInWithEmail(context, widget._email.text, widget._password.text) == true){
-              Navigator.pushNamed(context, TasksScreen.TaskScreenId);}
+            if(await authViewmodel.signInWithEmail(widget._email.text, widget._password.text) == true){
+            if(context.mounted){
+              Navigator.pushNamed(context, TasksScreen.TaskScreenId);
+            }
+              }
           }, text: "Login");
         }
       )

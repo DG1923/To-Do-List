@@ -3,6 +3,7 @@ import 'package:to_do_list/views/screen/toDoScreen/tasks_screen.dart';
 import 'package:to_do_list/views/widgets/constants.dart';
 import 'package:to_do_list/viewmodels/authViewModel.dart';
 import 'package:provider/provider.dart';
+import 'package:to_do_list/viewmodels/authViewModel/google_auth_view_model.dart';
 
 class LoginWithSocial extends StatelessWidget {
   LoginWithSocial({super.key});
@@ -14,13 +15,13 @@ class LoginWithSocial extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Consumer<Authviewmodel>(
-            builder: (context, authViewModel, child) {
-              return authViewModel.isLoading ? CircularProgressIndicator() : MaterialButton(
+          Consumer<GoogleAuthViewModel>(
+            builder: (context, goolgeAuthViewModel, child) {
+              return goolgeAuthViewModel.isLoading ? CircularProgressIndicator() : MaterialButton(
               height: 60,
               minWidth: 60,
               onPressed: () async {
-                if(await authViewModel.signInWithGoogle() == true){
+                if(await goolgeAuthViewModel.signInWithGoogle() == true){
                   Navigator.pushNamed(context, TasksScreen.TaskScreenId);
                 }
               },

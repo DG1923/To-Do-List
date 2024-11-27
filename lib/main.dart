@@ -8,6 +8,9 @@ import 'package:to_do_list/viewmodels/taskData.dart';
 import 'package:to_do_list/views/screen/loginScreen/loginUI.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:to_do_list/viewmodels/authViewModel/email_auth_view_model.dart';
+import 'package:to_do_list/viewmodels/authViewModel/google_auth_view_model.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -23,7 +26,9 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         //providers for the viewmodels
-        ChangeNotifierProvider(create: (context) => Authviewmodel()),
+        ChangeNotifierProvider(create: (context) => EmailAuthViewModel()),
+        ChangeNotifierProvider(create: (context)=> GoogleAuthViewModel()),
+        ChangeNotifierProvider(create: (context) => AuthViewModel()),
         ChangeNotifierProvider(create: (context) => Taskdata()),
       ],
 
