@@ -5,6 +5,7 @@ import 'package:to_do_list/views/screen/toDoScreen/components/headerSceen.dart';
 import 'package:to_do_list/views/screen/toDoScreen/components/addTaskScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list/viewmodels/taskData.dart';
+import 'package:to_do_list/views/screen/NavigatorBar/navigatorScreen.dart';
 import 'package:to_do_list/viewmodels/authViewModel.dart';
 import 'package:to_do_list/views/screen/toDoScreen/modern_tasks_screen.dart';
 class TasksScreen extends StatelessWidget {
@@ -103,11 +104,12 @@ class TasksScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder:(context)=>ModernTasksScreen())
+                    MaterialPageRoute(builder:(context)=>Navigatorscreen())
                   );
                 }, 
                 child: Icon(Icons.arrow_forward_ios)),
             ),
+
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(30),
