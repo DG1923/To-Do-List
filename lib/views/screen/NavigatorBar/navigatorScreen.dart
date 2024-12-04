@@ -18,7 +18,7 @@ class _NavigatorscreenState extends State<Navigatorscreen> {
   List<Widget> _widgetOptions = <Widget>[
     TasksScreen(),
     ModernTasksScreen(),
-    Pomodoroscreen(),
+    HomeScreen(),
   ];
   void _onTapChanged(int index){
     setState(() {
@@ -36,17 +36,25 @@ class _NavigatorscreenState extends State<Navigatorscreen> {
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month),
+            icon: Icon(Icons.check_circle),
             label: "Habits",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.schedule),
+            icon: Icon(Icons.timer),
             label: "Pomodoro",
           ),
         ],
         currentIndex: _index,
         onTap: _onTapChanged,
         selectedItemColor: Colors.lightBlueAccent,
+        selectedFontSize: 12,
+        unselectedFontSize: 0,
+        unselectedIconTheme: IconThemeData(
+          size: 25,
+        ),
+        selectedIconTheme: IconThemeData(
+          size: 30,
+        ),
       ),
     );;
   }
