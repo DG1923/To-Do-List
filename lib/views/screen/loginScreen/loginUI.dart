@@ -32,58 +32,60 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Center(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-                children: [
-                  const Header(),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
-                    child:Prompt(),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, SignUpScreen.SignupId);
-                    },
-                    child: Text(
-                      "Don't have an account? Sign Up Now",
-                      style: kTextStyle.copyWith(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: kPrimaryColor,
-                      ),
+          child: Container(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                  children: [
+                    const Header(),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 30),
+                      child:Prompt(),
                     ),
-                  ),
-                  //Line with text Login with
-                  Row(
-                    children: [
-                      const Expanded(
-                        child: Divider(
-                          color: kPrimaryColor,
-                          thickness: 1,
-                        ),
-                      ),
-                      Text(
-                        "Or Login with",
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, SignUpScreen.SignupId);
+                      },
+                      child: Text(
+                        "Don't have an account? Sign Up Now",
                         style: kTextStyle.copyWith(
-                          fontSize: 16,
+                          fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: kPrimaryColor,
                         ),
                       ),
-                      const Expanded(
-                        child: Divider(
-                          color: kPrimaryColor,
-                          thickness: 1,
+                    ),
+                    //Line with text Login with
+                    Row(
+                      children: [
+                        const Expanded(
+                          child: Divider(
+                            color: kPrimaryColor,
+                            thickness: 1,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  LoginWithSocial(),      
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ]),
+                        Text(
+                          "Or Login with",
+                          style: kTextStyle.copyWith(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: kPrimaryColor,
+                          ),
+                        ),
+                        const Expanded(
+                          child: Divider(
+                            color: kPrimaryColor,
+                            thickness: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    LoginWithSocial(),      
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ]),
+            ),
           ),
         ),
       ),

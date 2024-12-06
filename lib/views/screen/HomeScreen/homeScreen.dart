@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'taskScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -7,7 +7,7 @@ class HomeScreen extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.lightBlue),
-      home: TaskScreen(),
+      home: SafeArea(child: Taskscreen()),
     );
   }
 }
@@ -47,16 +47,16 @@ class TaskScreen extends StatelessWidget {
               padding: EdgeInsets.all(16.0),
               children: [
                 _buildSection("Cá nhân", [
-                  _buildTaskCard("Hoàn thiện todo", "3 tasks", "Đang thực hiện", Icons.edit),
-                  _buildTaskCard("Hoàn thiện todo", "3 tasks", "Chưa bắt đầu", Icons.menu),
+                  _buildTaskCard("Hoàn thiện todo", "3 steps", "Đang thực hiện", Icons.edit),
+                  _buildTaskCard("Hoàn thiện todo", "3 steps", "Chưa bắt đầu", Icons.menu),
                 ]),
                 _buildSection("Công ty", [
-                  _buildTaskCard("Hoàn thiện todo", "3 tasks", "Đang thực hiện", Icons.edit),
-                  _buildTaskCard("Hoàn thiện todo", "3 tasks", "Chưa bắt đầu", Icons.menu),
+                  _buildTaskCard("Hoàn thiện todo", "3 steps", "Đang thực hiện", Icons.edit),
+                  _buildTaskCard("Hoàn thiện todo", "3 steps", "Chưa bắt đầu", Icons.menu),
                 ]),
                 _buildSection("Task miss", [
-                  _buildTaskCard("Hoàn thiện todo", "3 tasks", "Đang thực hiện", Icons.edit),
-                  _buildTaskCard("Hoàn thiện todo", "3 tasks", "Chưa bắt đầu", Icons.add),
+                  _buildTaskCard("Hoàn thiện todo", "3 steps", "Đang thực hiện", Icons.edit),
+                  _buildTaskCard("Hoàn thiện todo", "3 steps", "Chưa bắt đầu", Icons.add),
                 ]),
               ],
             ),

@@ -46,10 +46,12 @@ class _PromptState extends State<Prompt> {
           Icons.account_circle,
           color: kPrimaryColor,
         ),
-        title: TextField(
-          controller: textEditingController,
-          obscureText: isPasswords,
-          decoration: isPasswords ?kTextFieldDecoration.copyWith(hintText: "Enter your password") : kTextFieldDecoration.copyWith(hintText: "Enter your email"),
+        title: Container(
+          child: TextField(
+            controller: textEditingController,
+            obscureText: isPasswords,
+            decoration: isPasswords ?kTextFieldDecoration.copyWith(hintText: "Enter your password") : kTextFieldDecoration.copyWith(hintText: "Enter your email"),
+          ),
         ),
       ),
     );
@@ -57,44 +59,48 @@ class _PromptState extends State<Prompt> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      card(hintText:"Enter your email", textEditingController: widget._email),
-      card(hintText: "Enter your password",isPasswords: true, textEditingController: widget._password),
-      Row(
+    return Container(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          GestureDetector(
-            onTap: () {},
-            child: Row(
-              children: [
-                Checkbox(value: rememberAccount, onChanged: (value) {}),
-                Text("Remember Account"),
-              ],
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              "Forgot Password?",
-              style: kTextStyle.copyWith(
-                fontSize: 14,
-                color: kPrimaryColor,
+          children: [
+        card(hintText:"Enter your email", textEditingController: widget._email),
+        card(hintText: "Enter your password",isPasswords: true, textEditingController: widget._password),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: Row(
+                children: [
+                  Checkbox(value: rememberAccount, onChanged: (value) {}),
+                  Text("Remember Account"),
+                ],
               ),
             ),
-          ),
-        ],
-      ),
-      Consumer<EmailAuthViewModel>(
-        builder: (context,authViewmodel, child){
-          return authViewmodel.isLoading?CircularProgressIndicator():kCustomButton(function: ()async{
-            if(await authViewmodel.signInWithEmail(widget._email.text, widget._password.text) == true){
-            if(context.mounted){
-              Navigator.pushNamed(context, TasksScreen.TaskScreenId);
-            }
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                "Forgot Password?",
+                style: kTextStyle.copyWith(
+                  fontSize: 14,
+                  color: kPrimaryColor,
+                ),
+              ),
+            ),
+          ],
+        ),
+        Consumer<EmailAuthViewModel>(
+          builder: (context,authViewmodel, child){
+            return authViewmodel.isLoading?CircularProgressIndicator():kCustomButton(function: ()async{
+              if(await authViewmodel.signInWithEmail(widget._email.text, widget._password.text) == true){
+              if(context.mounted){
+                Navigator.pushNamed(context, TasksScreen.TaskScreenId);
               }
-          }, text: "Login");
-        }
-      )
-    ]);
+                }
+            }, text: "Login");
+          }
+        )
+      ]),
+    );
   }
 }
