@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_list/views/widgets/constants.dart';
-
-class Taskscreen extends StatelessWidget {
+import 'components/categoriesTab.dart';
+import 'components/searchBar.dart';
+import 'components/sectionCard.dart';
+import 'components/sideBar.dart';
+class Taskscreen extends StatefulWidget {
   Taskscreen({super.key});
 
   @override
+  State<Taskscreen> createState() => _TaskscreenState();
+}
+class _TaskscreenState extends State<Taskscreen> {
+  @override
   Widget build(BuildContext context) {
+    SearchController controller = SearchController();
     List<String> titleTask = [
       "task 1",
       "task 2",
@@ -19,92 +27,45 @@ class Taskscreen extends StatelessWidget {
       "Company",
       "Family",
       "Start-up",
+      "Home",
+      "Project"
     ];
     return Scaffold(
+      drawer: Sidebar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {  },
+        backgroundColor: kPrimaryColor,
+        child: Icon(Icons.add,color: Colors.white,),
+      ),
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: (){},
-        ),
-      ),
-      body: Column(
-        children: [
-          Container(
-            height: 50,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              children: [
-                _categoriesTab("Personal", false),
-                _categoriesTab("Personal", true),
-                _categoriesTab("Personal", true),
-                _categoriesTab("Personal", false),
-              ],
-            ),
-          ),
-          Expanded(child: ListView(
-            children: sectionTask.map((String sectionTask){
-              return _sectionCard(sectionTask,titleTask);
-            }).toList(),
+        title: Text("Home"),
+        centerTitle: true,
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(
+              Icons.account_circle,
+            weight: 50,
           ))
-
         ],
-      ),
-    );
-  }
-  Widget _sectionCard(String sectionTask,List<String> titleTasks){
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Card(
-        color: Colors.white,
-        child: ExpansionTile(
-          title: Text(sectionTask),
-          subtitle: Text("3/4 tasks"),
-          shape: Border(
-            top: BorderSide.none,
-            bottom: BorderSide.none,
+        leading: Builder(
+          builder:(context)=> IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: (){
+              setState(() {
+                Scaffold.of(context).openDrawer();
+              });
+            },
           ),
-          childrenPadding: EdgeInsets.symmetric(horizontal: 20),
-          tilePadding: EdgeInsets.symmetric(vertical: 5),
-          expandedCrossAxisAlignment: CrossAxisAlignment.start,
-          maintainState: true,
-          initiallyExpanded: false,
-          leading: CircleAvatar(
-              backgroundColor: Colors.green,
-              child: Icon(Icons.done_all,color: Colors.white,)),
-          children: titleTasks.map((String title){
-            return _taskCard(title);
-          }).toList(),
         ),
       ),
-    );
-  }
-  Widget _taskCard(String title){
-    return Card(
-      color: Colors.white,
-      child: ListTile(
-        title: Text(title),
-        leading: Icon(Icons.done),
-        trailing: Icon(Icons.check_box_outline_blank),
-      ),
-    );
-  }
-  Widget _categoriesTab(String tittle, bool isActive){
-    Color activeColor = Colors.lightBlueAccent;
-    Color inactiveColor = Colors.white;
-    Color activeTextColor = Colors.white;
-    Color inactiveTextColor = Colors.black;
-
-    return Chip(
-      backgroundColor: isActive?activeColor:inactiveColor,
-      label: Text('Aaron Burr',
-        style: isActive?kTextStyle.copyWith(color: activeTextColor):kTextStyle.copyWith(color: inactiveTextColor),
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20)
-      ),
-      side: BorderSide(
-        style: BorderStyle.none,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            Searchbar(controller: controller,),
+            Categoriestab(sectionTask: sectionTask),
+            Sectioncard(sectionTask: sectionTask, titleTasks: titleTask)
+          ],
+        ),
       ),
     );
   }

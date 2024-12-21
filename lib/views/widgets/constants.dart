@@ -5,10 +5,10 @@ import 'package:flutter/painting.dart';
 const kTextStyle = TextStyle(
   fontFamily:"Roboto",
   color: kSecondColor,
-  fontSize: 14,
+  fontSize: 12,
   fontWeight: FontWeight.bold,
 );
-
+const kThirdColor = Color(0xFFD8E6F2);
 const kSecondColor = Colors.white;
 // const kPrimaryColor = Color(0xFF87dce3);
 const kPrimaryColor = Colors.lightBlueAccent;
